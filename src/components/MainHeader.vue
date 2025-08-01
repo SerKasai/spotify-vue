@@ -11,13 +11,17 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  background-color: #334155;
-  padding: 15px;
+header {
+  min-height: 8vh;
 
-  img {
-    width: 50px;
+  .container {
+    display: flex;
+    background-color: #334155;
+    padding: 15px;
+
+    img {
+      width: 50px;
+    }
   }
 }
 </style>
