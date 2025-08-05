@@ -9,6 +9,8 @@
         {{ song.author }}
         <br />
         {{ song.year }}
+        <!-- <br />
+        {{ song.genre }} -->
       </div>
     </figure>
   </div>

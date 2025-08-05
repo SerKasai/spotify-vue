@@ -1,7 +1,8 @@
 <template>
   <section>
     <div class="container">
-      <SongAlbum v-for="(song, i) in album" :key="i" :song="song" />
+      <!-- <h2>Valore della props filtro ricevuta dal main content: {{ filtro }}</h2> -->
+      <SongAlbum v-for="(song, i) in filteredGenre" :key="i" :song="song" />
     </div>
   </section>
 </template>
@@ -18,6 +19,20 @@ export default {
     return {
       album: [],
     };
+  },
+  props: {
+    filtro: {
+      type: String,
+      default: "",
+    },
+  },
+  computed: {
+    filteredGenre: function () {
+      return this.album.filter((el) => {
+        const { genre } = el;
+        return genre.toLowerCase().includes(this.filtro.toLowerCase());
+      });
+    },
   },
   methods: {
     fetchAlbum: function () {
