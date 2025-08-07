@@ -10,27 +10,31 @@
 <script>
 import axios from "axios";
 import SongAlbum from "./SongAlbum.vue";
+import state from "../store.js";
 
 export default {
   components: {
     SongAlbum,
   },
-  data() {
-    return {
-      album: [],
-    };
-  },
-  props: {
-    filtro: {
-      type: String,
-      default: "",
-    },
-  },
+  // data() {
+  //   return {
+  //     album: [],
+  //   };
+  // },
+  // props: {
+  //   filtro: {
+  //     type: String,
+  //     default: "",
+  //   },
+  // },
   computed: {
+    filter: function () {
+      return state.genre;
+    },
     filteredGenre: function () {
-      return this.album.filter((el) => {
+      return state.album.filter((el) => {
         const { genre } = el;
-        return genre.toLowerCase().includes(this.filtro.toLowerCase());
+        return genre.toLowerCase().includes(this.filter.toLowerCase());
       });
     },
   },
@@ -39,8 +43,9 @@ export default {
       axios
         .get("https://flynn.boolean.careers/exercises/api/array/music")
         .then((res) => {
-          console.log(res.data.response);
-          this.album = res.data.response;
+          // console.log(res.data.response);
+          // this.album = res.data.response;
+          state.album = res.data.response;
         });
     },
   },

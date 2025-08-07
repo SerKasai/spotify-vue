@@ -5,8 +5,8 @@
     <select
       name="genre"
       id="select-genre"
-      v-model="genere"
-      @click="$emit('filter', genere)"
+      v-model="genre"
+      @click="setStateFilter"
     >
       <option value="">--Scegli un genere--</option>
       <option value="rock">Rock</option>
@@ -14,21 +14,24 @@
       <option value="jazz">Jazz</option>
       <option value="metal">Metal</option>
     </select>
-    <button class="button-reset" @click="genere = ''">Reset</button>
+    <button class="button-reset" @click="genre = ''">Reset</button>
   </div>
 </template>
 
 <script>
+import state from "../store.js";
+
 export default {
   data() {
     return {
-      genere: "",
+      genre: "",
     };
   },
   methods: {
-    filtraGenere: function () {
-      console.log(this.genere);
-      this.$emit("filtra", this.genere); // alternativa con methods //
+    setStateFilter: function () {
+      state.genre = this.genre;
+      // console.log(this.genere);
+      // this.$emit("filtra", this.genere); // alternativa con methods //
     },
   },
 };
